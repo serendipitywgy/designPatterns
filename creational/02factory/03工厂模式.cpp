@@ -13,11 +13,11 @@ public:
 class SheepSmile:public AbstractSmile
 {
 public:
-     void trasnform()
+     void trasnform()override
      {
          cout << "变成人兽--绵羊人形态" << endl;
      }
-     void ability()
+     void ability()override
      {
          cout << "将手臂变成羊角招式--巨羊角" << endl;
      }
@@ -27,11 +27,11 @@ public:
 class LionSmile:public AbstractSmile
 {
 public:
-     void trasnform()
+     void trasnform()override
      {
          cout << "变成人兽--狮子形态" << endl;
      }
-     void ability()
+     void ability()override
      {
          cout << "河东狮吼" << endl;
      }
@@ -41,11 +41,11 @@ public:
 class BatSmile:public AbstractSmile
 {
 public:
-     void trasnform()
+     void trasnform()override
      {
          cout << "变成人兽--蝙蝠形态" << endl;
      }
-     void ability()
+     void ability()override
      {
          cout << "吸血大法" << endl;
      }
@@ -63,7 +63,7 @@ public:
 class SheepFactory:public AbstractFactory
 {
 public:
-    AbstractSmile* createSmile()
+    AbstractSmile* createSmile()override
     {
         return new SheepSmile;
     }
@@ -78,7 +78,7 @@ public:
 class LionFactory:public AbstractFactory
 {
 public:
-    AbstractSmile* createSmile()
+    AbstractSmile* createSmile()override
     {
         return new LionSmile;
     }
@@ -92,7 +92,7 @@ public:
 class BatFactory:public AbstractFactory
 {
 public:
-    AbstractSmile* createSmile()
+    AbstractSmile* createSmile()override
     {
         return new BatSmile;
     }
