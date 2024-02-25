@@ -1,65 +1,113 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 
-class AbstractSmile {
+class AbstractSmile
+{
 public:
-  virtual void transform() = 0;
-  virtual void ability() = 0;
-  virtual ~AbstractSmile() {}
+    virtual void trasnform() = 0;
+    virtual void ability() = 0;
+    virtual ~AbstractSmile() {}
+
 };
-// 人造恶魔果实· 绵羊形态
-class SheepSmile : public AbstractSmile {
+// 恶魔果实：绵羊形态
+class SheepSmile:public AbstractSmile
+{
 public:
-  void transform() override { cout << "变成人兽 -- 山羊人形态..." << endl; }
-  void ability() override {
-    cout << "将手臂变成绵羊角的招式 -- 巨羊角" << endl;
-  }
+     void trasnform()
+     {
+         cout << "变成人兽--绵羊人形态" << endl;
+     }
+     void ability()
+     {
+         cout << "将手臂变成羊角招式--巨羊角" << endl;
+     }
 };
 
-// 人造恶魔果实· 狮子形态
-class LionSmile : public AbstractSmile {
+// 恶魔果实：狮子形态
+class LionSmile:public AbstractSmile
+{
 public:
-  void transform() override { cout << "变成人兽 -- 狮子人形态..." << endl; }
-  void ability() override { cout << "火遁· 豪火球之术..." << endl; }
+     void trasnform()
+     {
+         cout << "变成人兽--狮子形态" << endl;
+     }
+     void ability()
+     {
+         cout << "河东狮吼" << endl;
+     }
 };
 
-class BatSmile : public AbstractSmile {
+// 恶魔果实：蝙蝠形态
+class BatSmile:public AbstractSmile
+{
 public:
-  void transform() override { cout << "变成人兽 -- 蝙蝠人形态..." << endl; }
-  void ability() override { cout << "声纳引箭之万剑归宗..." << endl; }
+     void trasnform()
+     {
+         cout << "变成人兽--蝙蝠形态" << endl;
+     }
+     void ability()
+     {
+         cout << "吸血大法" << endl;
+     }
 };
 
-// 恶魔果实工厂类
-class AbstractFactory {
+//抽象工厂类
+class AbstractFactory
+{
 public:
-  virtual AbstractSmile *createSmile() = 0;
-  virtual ~AbstractFactory() {}
+    virtual AbstractSmile* createSmile() = 0;
+    virtual ~AbstractFactory() {}
 };
 
-class SheepFactory : public AbstractFactory {
+// 生产绵羊恶魔果实的工厂
+class SheepFactory:public AbstractFactory
+{
 public:
-  AbstractSmile *createSmile() override { return new SheepSmile; }
-  ~SheepFactory() { cout << "释放 SheepFactory 类相关的内存资源" << endl; }
+    AbstractSmile* createSmile()
+    {
+        return new SheepSmile;
+    }
+    ~SheepFactory()
+    {
+        cout << "释放SheepFactory相关资源" << endl;
+    }
 };
 
-class LionFactory : public AbstractFactory {
+
+// 生产狮子恶魔果实的工厂
+class LionFactory:public AbstractFactory
+{
 public:
-  // 工厂函数
-  AbstractSmile *createSmile() override { return new LionSmile; }
-  ~LionFactory() { cout << "释放 LionFactory 类相关的内存资源" << endl; }
+    AbstractSmile* createSmile()
+    {
+        return new LionSmile;
+    }
+    ~LionFactory()
+    {
+        cout << "释放LionFactory相关资源" << endl;
+    }
 };
 
-class BatFactory : public AbstractFactory {
+// 生产蝙蝠恶魔果实的工厂
+class BatFactory:public AbstractFactory
+{
 public:
-  // 工厂函数
-  AbstractSmile *createSmile() override { return new BatSmile; }
-  ~BatFactory() { cout << "释放 BatFactory 类相关的内存资源" << endl; }
+    AbstractSmile* createSmile()
+    {
+        return new BatSmile;
+    }
+    ~BatFactory()
+    {
+        cout << "释放BatFactory相关资源" << endl;
+    }
 };
 
-int main() {
-  AbstractFactory *factory = new BatFactory;
-  AbstractSmile *obj = factory->createSmile();
-  obj->transform();
-  obj->ability();
-  return 0;
+
+int main()
+{
+    AbstractFactory* factory = new LionFactory;
+    AbstractSmile* smile = factory->createSmile();
+    smile->trasnform();
+    smile->ability();
+    return 0;
 }
